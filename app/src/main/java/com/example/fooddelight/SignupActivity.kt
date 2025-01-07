@@ -6,18 +6,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.fooddelight.databinding.ActivitySigninBinding
+import com.example.fooddelight.databinding.ActivitySignupBinding
 
-class SigninActivity : AppCompatActivity() {
-    private val binding : ActivitySigninBinding by lazy {
-        ActivitySigninBinding.inflate(layoutInflater)
+class SignupActivity : AppCompatActivity() {
+    private val binding : ActivitySignupBinding by lazy {
+        ActivitySignupBinding.inflate(layoutInflater)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(binding.root)
         binding.textView8.setOnClickListener {
-            val intent = Intent(this,SignupActivity::class.java)
+            val intent = Intent(this,SigninActivity::class.java)
             startActivity(intent)
             finish()
         }

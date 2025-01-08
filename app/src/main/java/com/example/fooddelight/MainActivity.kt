@@ -17,9 +17,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        var NavController = findNavController(R.id.fragmentContainerView8)
+        //var NavController = findNavController(R.id.fragmentContainerView8)
         var bottomnav = findViewById<BottomNavigationView>(R.id.navigation)
-        bottomnav.setupWithNavController(NavController)
+        //bottomnav.setupWithNavController(NavController)
 
 
     }

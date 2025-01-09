@@ -5,14 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.fooddelight.Adapters.PopularAdapter
 import com.example.fooddelight.R
 import com.example.fooddelight.databinding.FragmentHomeBinding
 
 
 class HomeFragment : Fragment() {
-private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,11 +40,18 @@ private lateinit var binding: FragmentHomeBinding
         imageList.add(SlideModel(R.drawable.banner3))
 
         val imageSlider = binding.imageSlider
-        imageSlider.setImageList(imageList,ScaleTypes.FIT)
+        imageSlider.setImageList(imageList, ScaleTypes.FIT)
+
+
+        val foodName = listOf("Ice cream", "Soup", "Pasta", "Roll")
+        val Price = listOf("$1", "$4", "$7", "$5")
+        val foodImage =
+            listOf(R.drawable.menu3, R.drawable.menu4, R.drawable.menu5, R.drawable.menu6)
+        val adapter = PopularAdapter(foodName, Price, foodImage)
+        binding.rv.layoutManager = LinearLayoutManager(requireContext())
+        binding.rv.adapter = adapter
     }
-    val foodName = listOf("Ice cream","Soup","Pasta","Roll")
-    val prices = listOf("$1","$4","$7","$5",)
-    val foodImage = listOf(R.drawable.menu3,R.drawable.menu4,R.drawable.menu5,R.drawable.menu6)
+
 
 
     companion object {

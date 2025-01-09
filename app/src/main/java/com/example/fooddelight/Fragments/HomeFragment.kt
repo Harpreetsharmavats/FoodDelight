@@ -43,6 +43,10 @@ private lateinit var binding: FragmentHomeBinding
         var imageSlider = binding.imageSlider
         imageSlider.setImageList(imageList,ScaleTypes.FIT)
     }
+    val foodName = listOf("Ice cream","Soup","Pasta","Roll")
+    val prices = listOf("$1","$4","$7","$5",)
+    val foodImage = listOf(R.drawable.menu3,R.drawable.menu4,R.drawable.menu5,R.drawable.menu6)
+
 
     companion object {
 

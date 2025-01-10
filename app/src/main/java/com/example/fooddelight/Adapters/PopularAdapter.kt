@@ -26,11 +26,11 @@ return PopularViewHolder(PopularBinding.inflate(LayoutInflater.from(parent.conte
 return items.size
     }
     class PopularViewHolder(private val binding: PopularBinding) : RecyclerView.ViewHolder(binding.root) {
-        private val imageView = binding.foodimagePopular
+        private val image = binding.foodimagePopular
         fun bind(items: String, prices: String, images: Int) {
             binding.foodnamePopular.text= items
             binding.pricePopular.text= prices
-            imageView.setImageResource(images)
+            image.setImageResource(images)
 
         }
 

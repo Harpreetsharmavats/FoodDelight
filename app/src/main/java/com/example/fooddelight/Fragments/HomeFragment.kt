@@ -28,6 +28,8 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+
         return binding.root
 
     }
@@ -42,14 +44,15 @@ class HomeFragment : Fragment() {
         val imageSlider = binding.imageSlider
         imageSlider.setImageList(imageList, ScaleTypes.FIT)
 
-
         val foodName = listOf("Ice cream", "Soup", "Pasta", "Roll")
         val Price = listOf("$1", "$4", "$7", "$5")
         val foodImage =
             listOf(R.drawable.menu3, R.drawable.menu4, R.drawable.menu5, R.drawable.menu6)
-        val adapter = PopularAdapter(foodName, Price, foodImage)
+        val adapter = PopularAdapter(ArrayList(foodName),ArrayList(Price),ArrayList(foodImage))
         binding.rv.layoutManager = LinearLayoutManager(requireContext())
         binding.rv.adapter = adapter
+
+
     }
 
 

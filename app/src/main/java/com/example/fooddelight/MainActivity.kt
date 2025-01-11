@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         bottomnav.setupWithNavController(NavController)
 
 
+
     }
 
 }

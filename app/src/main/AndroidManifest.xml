@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDelight"
         tools:targetApi="31">
+
         <activity
             android:name=".ChooseLocationActivity"
             android:exported="false" />

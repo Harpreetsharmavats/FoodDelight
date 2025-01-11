@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fooddelight.Adapters.MenuAdapter
 import com.example.fooddelight.Adapters.PopularAdapter
 import com.example.fooddelight.R
 import com.example.fooddelight.databinding.FragmentMenuBottomSheetBinding
@@ -28,6 +27,11 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
 
 
         binding = FragmentMenuBottomSheetBinding.inflate(inflater,container,false)
+
+        binding.backbtn.setOnClickListener {
+            dismiss()
+        }
+
         val foodName = listOf("Ice cream", "Soup", "Pasta", "Roll")
         val Price = listOf("$1", "$4", "$7", "$5")
         val foodImage =

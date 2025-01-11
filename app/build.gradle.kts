@@ -61,5 +61,7 @@ dependencies {
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
     implementation(libs.car.ui.lib)
 
-
+    implementation ("androidx.appcompat:appcompat:1.7.0")
+    // For loading and tinting drawables on older versions of the platform
+    implementation ("androidx.appcompat:appcompat-resources:1.7.0")
 }

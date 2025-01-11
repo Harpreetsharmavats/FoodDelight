@@ -29,7 +29,10 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-
+binding.viewmore.setOnClickListener {
+    val bottomSheetDialog = MenuBottomSheetFragment()
+    bottomSheetDialog.show(parentFragmentManager,"Test")
+}
         return binding.root
 
     }

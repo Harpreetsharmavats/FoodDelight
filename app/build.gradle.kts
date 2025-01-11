@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.fooddelight"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -59,8 +59,7 @@ dependencies {
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.recyclerview)
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
-
-
+    implementation(libs.car.ui.lib)
 
 
 }

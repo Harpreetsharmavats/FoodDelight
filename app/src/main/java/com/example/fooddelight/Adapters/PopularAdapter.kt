@@ -15,14 +15,8 @@ class PopularAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PopularAdapter.PopularViewHolder {
-        return PopularViewHolder(
-            PopularBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+    ): PopularViewHolder {
+        return PopularViewHolder(PopularBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: PopularAdapter.PopularViewHolder, position: Int) {

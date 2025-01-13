@@ -24,7 +24,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="cursive"
@@ -57,11 +57,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:fontFamily="cursive"
-                android:layout_gravity="center"
                 android:gravity="center"
                 android:text="Address"
                 android:textColor="@color/black"
@@ -71,6 +71,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Lorem ipsum is placeholder text  commonly used in the graphic,  print, and publishing industries  for previewing layouts and visual "
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
@@ -92,7 +93,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="cursive"
@@ -125,7 +126,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="cursive"
@@ -163,7 +164,8 @@
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:textColor="@color/green"
-            android:text="Button" />
+            android:backgroundTint="@color/white"
+            android:text="Save Details" />
     </LinearLayout>
 
 </FrameLayout>

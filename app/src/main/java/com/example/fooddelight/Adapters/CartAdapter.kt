@@ -1,14 +1,18 @@
 package com.example.fooddelight.Adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fooddelight.DetailsActivity
 import com.example.fooddelight.databinding.CartviewcardBinding
 
 class CartAdapter(
     private val cartitems: MutableList<String>,
     private val price: MutableList<String>,
-    private val foodimage: MutableList<Int>
+    private val foodimage: MutableList<Int>,
+    private val requireContext : Context
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     private val itemsQuantities = IntArray(cartitems.size) { 1 }
@@ -24,6 +28,14 @@ class CartAdapter(
 
     override fun onBindViewHolder(holder: CartAdapter.CartViewHolder, position: Int) {
         holder.bind(position)
+
+        /*holder.itemView.setOnClickListener {
+            // setOnClickListner to Open Details
+            val intent = Intent(requireContext, DetailsActivity::class.java)
+            intent.putExtra("items",cartitems)
+            intent.putExtra("images",foodimage)
+            requireContext.startActivity(intent)
+        }*/
     }
 
     override fun getItemCount(): Int = cartitems.size

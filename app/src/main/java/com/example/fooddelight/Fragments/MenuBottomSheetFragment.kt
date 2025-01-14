@@ -36,7 +36,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
         val Price = listOf("$1", "$4", "$7", "$5")
         val foodImage =
             listOf(R.drawable.menu3, R.drawable.menu4, R.drawable.menu5, R.drawable.menu6)
-        val adapter = PopularAdapter(ArrayList(foodName),ArrayList(Price),ArrayList(foodImage))
+        val adapter = PopularAdapter(ArrayList(foodName),ArrayList(Price),ArrayList(foodImage),requireContext())
         binding.menurv.layoutManager = LinearLayoutManager(requireContext())
         binding.menurv.adapter = adapter
         return binding.root

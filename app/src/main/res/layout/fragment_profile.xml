@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="2dp"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".Fragments.ProfileFragment">
 
     <LinearLayout

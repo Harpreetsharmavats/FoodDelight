@@ -40,7 +40,7 @@ class CartFragment : Fragment() {
         val cartPrice = listOf("$1", "$4", "$7", "$5")
         val cartFoodImage =
             listOf(R.drawable.menu3, R.drawable.menu4, R.drawable.menu5, R.drawable.menu6)
-        val adapter = CartAdapter(ArrayList(cartFoodName),ArrayList(cartPrice),ArrayList(cartFoodImage))
+        val adapter = CartAdapter(ArrayList(cartFoodName),ArrayList(cartPrice),ArrayList(cartFoodImage),requireContext())
         binding.cartrv.layoutManager = LinearLayoutManager(requireContext())
         binding.cartrv.adapter = adapter
 

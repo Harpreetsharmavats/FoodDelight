@@ -3,6 +3,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 
@@ -64,4 +65,7 @@ dependencies {
     implementation ("androidx.appcompat:appcompat:1.7.0")
     // For loading and tinting drawables on older versions of the platform
     implementation ("androidx.appcompat:appcompat-resources:1.7.0")
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.storage)
 }

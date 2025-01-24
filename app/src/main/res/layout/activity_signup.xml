@@ -156,7 +156,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/googlebtn"
         style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="152dp"
         android:layout_height="57dp"
@@ -165,13 +165,13 @@
         android:outlineProvider="bounds"
         android:text="Google"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/facebookbtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/facebookbtn"
         android:layout_width="152dp"
         android:layout_height="57dp"
         style="@style/Widget.Material3.Button.OutlinedButton"
@@ -182,7 +182,7 @@
         android:drawableLeft="@drawable/facebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintStart_toEndOf="@+id/googlebtn"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <Button

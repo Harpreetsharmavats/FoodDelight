@@ -38,9 +38,9 @@ class SearchFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        adapter = PopularAdapter(filterMenuFood,filterMenuPrice,filterMenuImage,requireContext())
+        /*adapter = PopularAdapter(filterMenuFood,filterMenuPrice,filterMenuImage,requireContext())
         binding.searchrv.layoutManager = LinearLayoutManager(requireContext())
-        binding.searchrv.adapter = adapter
+        binding.searchrv.adapter = adapter*/
 
         //setup for searchview
         setupSearchView()

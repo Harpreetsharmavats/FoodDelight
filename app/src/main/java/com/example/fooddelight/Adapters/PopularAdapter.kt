@@ -63,7 +63,7 @@ class PopularAdapter(
         val menuItem = menuItem[position]
         val intent = Intent(requireContext,DetailsActivity::class.java).apply {
             putExtra("ItemName",menuItem.foodName)
-            putExtra("ItemPrice",menuItem.foodPrice)
+            //putExtra("ItemPrice",menuItem.foodPrice)
             putExtra("ItemDescription",menuItem.foodDescription)
             putExtra("ItemIngredients",menuItem.foodIngredient)
             putExtra("ItemImage",menuItem.foodImage)

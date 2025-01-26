@@ -57,12 +57,6 @@ class HomeFragment : Fragment() {
         val imageSlider = binding.imageSlider
         imageSlider.setImageList(imageList, ScaleTypes.FIT)
 
-
-
-
-
-
-
     }
 
     private fun retrieveData() {
@@ -77,7 +71,7 @@ class HomeFragment : Fragment() {
                     menuItems?.let {
                         menuItem.add(it)
                     }
-                    setAdapter()
+                    popularItems()
                 }
             }
 
@@ -88,15 +82,20 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun setAdapter() {
-        val adapter = PopularAdapter(menuItem,requireContext())
+    private fun popularItems() {
+        val index = menuItem.indices.toList().shuffled()
+        val numOfItemToShow = 6
+        val subsetMenuItem = index.take(numOfItemToShow).map { menuItem[it] }
+        setAdapter(subsetMenuItem)
+
+    }
+
+    private fun setAdapter(subsetMenuItem: List<Menu>) {
+        val adapter = PopularAdapter(subsetMenuItem,requireContext())
         binding.rv.layoutManager = LinearLayoutManager(requireContext())
         binding.rv.adapter = adapter
     }
 
 
-    companion object {
 
-
-    }
 }

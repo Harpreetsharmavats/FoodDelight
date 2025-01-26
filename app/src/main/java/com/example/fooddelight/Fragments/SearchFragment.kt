@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddelight.Adapters.PopularAdapter
 import com.example.fooddelight.R
 import com.example.fooddelight.databinding.FragmentSearchBinding

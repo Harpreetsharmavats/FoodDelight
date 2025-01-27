@@ -173,7 +173,7 @@ registerForActivityResult(ActivityResultContracts.StartActivityForResult()){resu
         val currentUser = auth.currentUser
         if (currentUser != null){
             startActivity(Intent(this,MainActivity::class.java))
-            finish()
+
         }
     }
 }

@@ -52,8 +52,7 @@ class CartFragment : Fragment() {
 
         binding.proceedbtn.setOnClickListener {
             getOrderDetails()
-            val intent = Intent(requireContext(),PayoutActivity::class.java)
-            startActivity(intent)
+
         }
 
 

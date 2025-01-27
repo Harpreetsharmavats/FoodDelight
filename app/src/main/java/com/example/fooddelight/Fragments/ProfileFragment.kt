@@ -5,11 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.fooddelight.R
+import android.widget.Toast
 import com.example.fooddelight.databinding.FragmentProfileBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class ProfileFragment : Fragment() {
+    private val auth = FirebaseAuth.getInstance()
+    private val database = FirebaseDatabase.getInstance()
     private lateinit var binding: FragmentProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,10 +29,93 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentProfileBinding.inflate(inflater,container,false)
-
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        setUserData()
+        binding.savedetailsbtn.setOnClickListener {
+            val name = binding.name.text.toString().trim()
+            val email = binding.email.text.toString().trim()
+            val address = binding.address.text.toString().trim()
+            val phone = binding.phone.text.toString().trim()
+            updateUserData(name,email,address,phone)
+        }
         return binding.root
     }
+
+    private fun updateUserData(name: String, email: String, address: String, phone: String) {
+        val userId = auth.currentUser?.uid
+        if (userId != null){
+            val userRef = database.getReference("user").child(userId)
+            val userData = hashMapOf(
+                "name" to name,
+                "email" to email,
+                "address" to address,
+                "phone" to phone
+            )
+            userRef.setValue(userData).addOnSuccessListener {
+                Toast.makeText(requireContext(),"Data Uploaded",Toast.LENGTH_SHORT).show()
+            }
+                .addOnFailureListener {
+                    Toast.makeText(requireContext(),"Data Failed",Toast.LENGTH_SHORT).show()
+
+                }
+        }
+    }
+
+
+   /* private fun setUserData() {
+        val userId = auth.currentUser?.uid
+        if (userId != null) {
+            val userRef = database.getReference("user").child(userId)
+
+            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val userProfile = snapshot.getValue(Users::class.java)
+                        if (userProfile != null) {
+                            binding.name.setText(userProfile.Name)
+                            binding.address.setText(userProfile.Address)
+                            binding.email.setText(userProfile.Email)
+                            binding.phone.setText(userProfile.Phone)
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+        }
+    }*/
+   private fun setUserData() {
+       val user = auth.currentUser
+       if (user != null){
+           val userId = user.uid
+           val userRef = database.getReference("user").child(userId)
+           userRef.addListenerForSingleValueEvent(object : ValueEventListener{
+               override fun onDataChange(snapshot: DataSnapshot) {
+                   if (snapshot.exists()){
+                       val names = snapshot.child("name").getValue(String::class.java)?:""
+                       val emails = snapshot.child("email").getValue(String::class.java)?:""
+                       val addresses = snapshot.child("address").getValue(String::class.java)?:""
+                       val phones = snapshot.child("phone").getValue(String::class.java)?:""
+                       binding.apply {
+                           name.setText(names)
+                           email.setText(emails)
+                           address.setText(addresses)
+                           phone.setText(phones)
+
+                       }
+                   }
+               }
+
+               override fun onCancelled(error: DatabaseError) {
+                   //Toast.makeText(,"Data not Fetched",Toast.LENGTH_SHORT).show()
+               }
+
+           })
+       }
+   }
 
     companion object {
 

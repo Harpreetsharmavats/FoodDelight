@@ -44,8 +44,7 @@
             android:background="@android:color/transparent"
             android:ems="10"
             android:gravity="center_vertical"
-            android:inputType="text"
-            android:text="Ramesh Kumar" />
+            android:inputType="text" />
     </LinearLayout>
 
         <LinearLayout
@@ -81,8 +80,7 @@
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textMultiLine"
-                android:minHeight="60dp"
-                android:text="Lorem ipsum is placeholder text  commonly used in the graphic,  print, and publishing industries  for previewing layouts and visual " />
+                android:minHeight="60dp" />
         </LinearLayout>
 
     <LinearLayout
@@ -115,8 +113,7 @@
             android:background="@android:color/transparent"
             android:ems="10"
             android:gravity="center_vertical"
-            android:inputType="text"
-            android:text="rameshkumar@gmail.com" />
+            android:inputType="text" />
     </LinearLayout>
 
     <LinearLayout
@@ -149,8 +146,7 @@
             android:background="@android:color/transparent"
             android:ems="10"
             android:gravity="center_vertical"
-            android:inputType="text"
-            android:text="8645434592" />
+            android:inputType="number" />
     </LinearLayout>
 
 </LinearLayout>

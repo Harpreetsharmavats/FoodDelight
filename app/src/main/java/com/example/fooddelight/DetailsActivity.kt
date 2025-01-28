@@ -27,9 +27,10 @@ class DetailsActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         foodName = intent.getStringExtra("ItemName")
         foodPrice = intent.getStringExtra("ItemPrice")
+        foodImage = intent.getStringExtra("ItemImage")
         foodDescription = intent.getStringExtra("ItemDescription")
         foodIngredient = intent.getStringExtra("ItemIngredients")
-        foodImage = intent.getStringExtra("ItemImage")
+
 
         with(binding) {
             detailfoodname.text = foodName
@@ -52,10 +53,10 @@ class DetailsActivity : AppCompatActivity() {
 
         val cartItem = CartItems(
             foodName.toString(),
-            foodIngredient.toString(),
+            foodPrice.toString(),
             foodImage.toString(),
             foodDescription.toString(),
-            foodPrice.toString(),
+            foodIngredient.toString(),
             1
         )
         database.child("user").child(userId).child("cartItems").push().setValue(cartItem)

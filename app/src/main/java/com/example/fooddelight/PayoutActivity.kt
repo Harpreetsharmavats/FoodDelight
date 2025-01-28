@@ -45,14 +45,42 @@ class PayoutActivity : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance().getReference()
 
         setUserData()
+
+        val intent = intent
+        foodItemName = intent.getStringArrayListExtra("FoodItemName") as ArrayList<String>
+        foodItemPrice = intent.getStringArrayListExtra("FoodItemPrice") as ArrayList<String>
+        foodItemImage = intent.getStringArrayListExtra("FoodItemImage") as ArrayList<String>
+        foodItemDescription = intent.getStringArrayListExtra("FoodItemDescription") as ArrayList<String>
+        foodItemIngredient = intent.getStringArrayListExtra("FoodItemIngredient") as ArrayList<String>
+        foodItemQuantity = intent.getIntegerArrayListExtra("FoodItemQuantity") as ArrayList<Int>
+
+        totalAmount = calculateTotal().toString() +"$"
+        binding.total.text = totalAmount
+
         binding.payoutbackbtn.setOnClickListener {
-            val intent = Intent(this,CartFragment::class.java)
-            startActivity(intent)
+            finish()
         }
         binding.placemyorderbtn.setOnClickListener {
             val bottomSheetFragment = CongratulationBottomSheet()
             bottomSheetFragment.show(supportFragmentManager,"Test")
         }
+    }
+
+    private fun calculateTotal(): Int {
+        var totalAmount = 0
+        for ( i in 0 until foodItemPrice.size){
+            val price = foodItemPrice[i]
+            val amount = price.replace("$","").toInt()
+            /*val lastChar = price.first()
+            val priceToInt = if(lastChar == '$'){
+                price.dropLast(1).toInt()
+            } else {
+                price.toInt()
+            }*/
+            val quantity = foodItemQuantity[i]
+            totalAmount += amount*quantity
+        }
+return totalAmount
     }
 
     private fun setUserData() {

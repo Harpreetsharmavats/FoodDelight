@@ -48,7 +48,7 @@ class CartAdapter(
         holder.bind(position)
 
         /*holder.itemView.setOnClickListener {
-            // setOnClickListner to Open Details
+            // setOnClickListener to Open Details
             val intent = Intent(requireContext, DetailsActivity::class.java)
             intent.putExtra("items",cartitems)
             intent.putExtra("images",foodimage)
@@ -82,8 +82,8 @@ class CartAdapter(
                     incrementItems(position)
                 }
                 deleteitems.setOnClickListener {
-                    val itemPostion = adapterPosition
-                    if (itemPostion != RecyclerView.NO_POSITION) {
+                    val itemPosition = adapterPosition
+                    if (itemPosition != RecyclerView.NO_POSITION) {
                         deleteItems(position)
                     }
                 }
@@ -95,6 +95,7 @@ class CartAdapter(
             if (itemsQuantities[position] > 1) {
                 itemsQuantities[position]--
                 quantity[position] = itemsQuantities[position]
+                //cartItemsReference.child(uniqueKeyAtPosition().toString()).child("foodQuantity").setValue(quantity)
                 binding.cartquantity.text = itemsQuantities[position].toString()
             }
         }
@@ -103,6 +104,7 @@ class CartAdapter(
             if (itemsQuantities[position] < 20) {
                 itemsQuantities[position]++
                 quantity[position] = itemsQuantities[position]
+                //cartItemsReference.child(uniqueKeyAtPosition().toString()).child("foodQuantity").updateChildren(quantity)
                 binding.cartquantity.text = itemsQuantities[position].toString()
             }
         }
@@ -157,6 +159,12 @@ class CartAdapter(
         }
 
     }
+
+    private fun uniqueKeyAtPosition(): String? {
+        val key = cartItemsReference.child("cartItems").key
+        return key
+    }
+
     companion object {
         private var itemsQuantities: IntArray= intArrayOf()
         private lateinit var cartItemsReference :DatabaseReference

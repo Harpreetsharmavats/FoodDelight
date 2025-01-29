@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.fooddelight.Models.CartItems
 import com.example.fooddelight.databinding.CartviewcardBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -95,6 +96,7 @@ class CartAdapter(
             if (itemsQuantities[position] > 1) {
                 itemsQuantities[position]--
                 quantity[position] = itemsQuantities[position]
+                //uniqueKeyAtPosition()
                 //cartItemsReference.child(uniqueKeyAtPosition().toString()).child("foodQuantity").setValue(quantity)
                 binding.cartquantity.text = itemsQuantities[position].toString()
             }
@@ -104,6 +106,7 @@ class CartAdapter(
             if (itemsQuantities[position] < 20) {
                 itemsQuantities[position]++
                 quantity[position] = itemsQuantities[position]
+                //uniqueKeyAtPosition()
                 //cartItemsReference.child(uniqueKeyAtPosition().toString()).child("foodQuantity").updateChildren(quantity)
                 binding.cartquantity.text = itemsQuantities[position].toString()
             }
@@ -160,9 +163,11 @@ class CartAdapter(
 
     }
 
-    private fun uniqueKeyAtPosition(): String? {
-        val key = cartItemsReference.child("cartItems").key
-        return key
+    private fun uniqueKeyAtPosition() {
+        val database = FirebaseDatabase.getInstance().reference
+        val userId = auth.currentUser?.uid?:""
+        database.child("user").child(userId).child("cartItems").push().setValue(quantity)
+
     }
 
     companion object {

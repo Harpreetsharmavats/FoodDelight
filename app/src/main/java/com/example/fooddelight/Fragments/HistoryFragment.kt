@@ -20,12 +20,12 @@ import com.google.firebase.database.ValueEventListener
 
 
 class HistoryFragment : Fragment() {
-   private lateinit var binding: FragmentHistoryBinding
-   private lateinit var adapter: BuyAgainAdapter
-   private lateinit var auth: FirebaseAuth
-   private lateinit var database: FirebaseDatabase
-   private lateinit var userId : String
-   private val listOfItems : MutableList<OrderDetails> = mutableListOf()
+    private lateinit var binding: FragmentHistoryBinding
+    private lateinit var adapter: BuyAgainAdapter
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
+    private lateinit var userId: String
+    private val listOfItems: MutableList<OrderDetails> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,29 +37,30 @@ class HistoryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         auth = FirebaseAuth.getInstance()
-        database =FirebaseDatabase.getInstance()
+        database = FirebaseDatabase.getInstance()
 
-        binding = FragmentHistoryBinding.inflate(inflater,container,false)
-recentBuyItems()
-       //setupRecyclerView()
+        binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        recentBuyItems()
+        //setupRecyclerView()
         return binding.root
     }
 
     private fun recentBuyItems() {
         binding.recentbuycard.visibility = View.INVISIBLE
-        userId = auth.currentUser?.uid?:""
+        userId = auth.currentUser?.uid ?: ""
         val databaseRef = database.reference.child("user").child(userId).child("BuyHistory")
         val sortedByTime = databaseRef.orderByChild("currentTime")
 
-        sortedByTime.addListenerForSingleValueEvent(object : ValueEventListener{
+        sortedByTime.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                for (foodSnapshot in snapshot.children){
+                for (foodSnapshot in snapshot.children) {
                     val recentBuy = foodSnapshot.getValue(OrderDetails::class.java)
                     recentBuy?.let { listOfItems.add(it) }
 
                 }
-                if ( listOfItems.isNotEmpty()){
+                if (listOfItems.isNotEmpty()) {
                     setDataRecentBuyItem()
+                    setPreviousItem()
                 }
             }
 
@@ -74,27 +75,31 @@ recentBuyItems()
         binding.recentbuycard.visibility = View.VISIBLE
         val recentOrderItems = listOfItems.firstOrNull()
         recentOrderItems?.let {
-            with(binding){
-                recentfooditem.text = it.foodName?.firstOrNull()?:""
-                recentprice.text = it.foodPrice?.firstOrNull()?:""
-                val image = it.foodImage?.firstOrNull()?:""
+            with(binding) {
+                recentfooditem.text = it.foodName?.firstOrNull() ?: ""
+                recentprice.text = it.foodPrice?.firstOrNull() ?: ""
+                val image = it.foodImage?.firstOrNull() ?: ""
                 val uriString = Uri.parse(image)
                 Glide.with(requireContext()).load(uriString).into(recentfoodimage)
+
             }
         }
     }
 
-    private fun setupRecyclerView() {
-        val foodName = arrayListOf("Ice cream", "Soup", "Pasta", "Roll")
-        val Price = arrayListOf("$1", "$4", "$7", "$5")
-        val foodImage =
-            arrayListOf(R.drawable.menu3, R.drawable.menu4, R.drawable.menu5, R.drawable.menu6)
-        adapter = BuyAgainAdapter(foodName,Price,foodImage)
-binding.buyagainrv.layoutManager = LinearLayoutManager(requireContext())
-        binding.buyagainrv.adapter =adapter
+    private fun setPreviousItem() {
+        val buyAgainFoodName: MutableList<String> = mutableListOf()
+        val buyAgainFoodPrice :MutableList<String> = mutableListOf()
+        val buyAgainFoodImage :MutableList<String> = mutableListOf()
+        for ( i in 1 until listOfItems.size){
+            listOfItems[i].foodName?.firstOrNull()?.let { buyAgainFoodName.add(it) }
+            listOfItems[i].foodPrice?.firstOrNull()?.let { buyAgainFoodPrice.add(it) }
+            listOfItems[i].foodImage?.firstOrNull()?.let { buyAgainFoodImage.add(it) }
+        }
+        val rv = binding.buyagainrv
+        rv.layoutManager = LinearLayoutManager(requireContext())
+        adapter = BuyAgainAdapter(buyAgainFoodName, buyAgainFoodPrice, buyAgainFoodImage,requireContext())
+        rv.adapter = adapter
     }
 
-    companion object {
 
-    }
 }

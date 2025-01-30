@@ -56,9 +56,6 @@ class CartFragment : Fragment() {
         }
 
 
-
-
-
         return binding.root
     }
 
@@ -69,7 +66,7 @@ class CartFragment : Fragment() {
       val foodImages = mutableListOf<String>()
       val foodDescriptions = mutableListOf<String>()
       val foodIngredients = mutableListOf<String>()
-        val foodQuantities = cartAdapter.getUpdateItemsQuantity()
+        val foodQuantities = cartAdapter.getUpdateItemsQuantity()//mutableListOf<Int>()
 
         orderIdRef.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -80,8 +77,9 @@ class CartFragment : Fragment() {
                     orderItems?.foodImage?.let { foodImages.add(it) }
                     orderItems?.foodDescription?.let { foodDescriptions.add(it) }
                     orderItems?.foodIngredient?.let { foodIngredients.add(it) }
-                    orderItems?.foodQuantity?.let { foodQuantities.add(it) }
+                    //orderItems?.foodQuantity?.let { foodQuantities.add(it) }
                 }
+
                 orderNow(foodNames,foodPrices,foodImages,foodDescriptions,foodIngredients,foodQuantities)
             }
 
@@ -108,7 +106,7 @@ class CartFragment : Fragment() {
             intent.putExtra("FoodItemImage",foodImages as ArrayList<String>)
             intent.putExtra("FoodItemDescription",foodDescriptions as ArrayList<String>)
             intent.putExtra("FoodItemIngredient",foodIngredients as ArrayList<String>)
-            intent.putExtra("FoodItemQuantity",foodQuantities as ArrayList<Int>)
+            intent.putIntegerArrayListExtra("FoodItemQuantity",foodQuantities as ArrayList<Int> )
             startActivity(intent)
         }
     }

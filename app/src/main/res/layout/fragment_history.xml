@@ -36,11 +36,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textView16">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recentbuycard"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/buyagainfoodimage"
+                android:id="@+id/recentfoodimage"
                 android:layout_width="62dp"
                 android:layout_height="62dp"
                 android:layout_marginStart="16dp"
@@ -51,7 +52,7 @@
                 app:srcCompat="@drawable/menu5" />
 
             <TextView
-                android:id="@+id/buyagainfooditems"
+                android:id="@+id/recentfooditem"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginStart="32dp"
@@ -61,11 +62,11 @@
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/buyagainfoodimage"
-                app:layout_constraintTop_toTopOf="@+id/buyagainfoodimage" />
+                app:layout_constraintStart_toEndOf="@+id/recentfoodimage"
+                app:layout_constraintTop_toTopOf="@+id/recentfoodimage" />
 
             <TextView
-                android:id="@+id/buyagainprice"
+                android:id="@+id/recentprice"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:layout_marginTop="8dp"
@@ -74,9 +75,9 @@
                 android:textColor="@color/green"
                 android:textSize="19sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/buyagainfooditems"
-                app:layout_constraintStart_toStartOf="@+id/buyagainfooditems"
-                app:layout_constraintTop_toBottomOf="@+id/buyagainfooditems" />
+                app:layout_constraintEnd_toEndOf="@+id/recentfooditem"
+                app:layout_constraintStart_toStartOf="@+id/recentfooditem"
+                app:layout_constraintTop_toBottomOf="@+id/recentfooditem" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/statusbtn"

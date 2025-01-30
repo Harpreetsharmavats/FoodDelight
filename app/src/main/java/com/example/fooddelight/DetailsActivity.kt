@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.fooddelight.Adapter.CartAdapter
 import com.example.fooddelight.Models.CartItems
 import com.example.fooddelight.databinding.ActivityDetailsBinding
 import com.google.firebase.auth.FirebaseAuth

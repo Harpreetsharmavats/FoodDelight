@@ -93,11 +93,7 @@ class CartAdapter(
             if (itemsQuantities[position] < 20) {
                 itemsQuantities[position]++
                 quantity[position] = itemsQuantities[position]
-                /*updateQuantity(position) { uniqueKey ->
-                    if (uniqueKey != null) {
-                        update(position, uniqueKey)
-                    }
-                }*/
+
                 binding.cartquantity.text = itemsQuantities[position].toString()
             }
         }
@@ -155,40 +151,7 @@ class CartAdapter(
 
     }
 
-    private fun update(position: Int, uniqueKey: String) {
-        val updateQuantity = mutableListOf("foodQuantity" to quantity)
-        cartItemsReference.child(uniqueKey).setValue(updateQuantity)
-    }
 
-    private fun updateQuantity(position : Int, onComplete: (String?) -> Unit) {
-
-        //val userId = auth.currentUser?.uid ?: ""
-
-        //val quantityRef =
-            //database.child("user").child(userId).child("cartItems")//.child("foodQuantity")
-
-            cartItemsReference.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    var uniqueKey: String? = null
-                    snapshot.children.forEachIndexed { index, dataSnapshot ->
-                        if (index == position) {
-                            uniqueKey = dataSnapshot.key
-                            return@forEachIndexed
-                        }
-                    }
-                    onComplete(uniqueKey)
-                }
-
-
-
-
-
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-            })
-    }
 
     fun getUpdateItemsQuantity(): MutableList<Int> {
         val itemQuantity = mutableListOf<Int>()
@@ -198,6 +161,7 @@ class CartAdapter(
 
 
     companion object {
+
 
         private var itemsQuantities: IntArray = intArrayOf()
         private lateinit var cartItemsReference: DatabaseReference

@@ -24,7 +24,7 @@ class PayoutActivity : AppCompatActivity() {
     private lateinit var foodItemImage: ArrayList<String>
     private lateinit var foodItemDescription: ArrayList<String>
     private lateinit var foodItemIngredient: ArrayList<String>
-    private lateinit var foodItemQuantity: ArrayList<Int>
+    private lateinit var foodItemQuantity: MutableList<Int>
     private lateinit var databaseReference: DatabaseReference
     private lateinit var userId: String
     private val binding: ActivityPayoutBinding by lazy {
@@ -58,6 +58,7 @@ class PayoutActivity : AppCompatActivity() {
         binding.payoutbackbtn.setOnClickListener {
             finish()
         }
+
         binding.placemyorderbtn.setOnClickListener {
             // get data from edittext
             name = binding.name.text.toString().trim()
@@ -72,6 +73,7 @@ class PayoutActivity : AppCompatActivity() {
 
 
         }
+
     }
 
     private fun placeOrder() {
@@ -85,13 +87,13 @@ class PayoutActivity : AppCompatActivity() {
             foodItemPrice,
             foodItemImage,
             foodItemQuantity,
-            false,
-            false,
-            address,
-            totalAmount,
-            phone,
-            time,
-            itemPushKey
+            b = false,
+            b1 = false,
+            address = address,
+            totalAmount = totalAmount,
+            phone = phone,
+            time = time,
+            itemPushKey = itemPushKey
         )
         val orderRef = databaseReference.child("OrderDetails").child(itemPushKey!!)
         orderRef.setValue(orderDetails).addOnSuccessListener {

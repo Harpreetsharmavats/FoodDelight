@@ -31,14 +31,13 @@ class OrderDetails():Parcelable {
         currentTime = parcel.readLong()
     }
 
-
     constructor(
         userId: String,
         name: String,
         foodItemName: ArrayList<String>,
         foodItemPrice: ArrayList<String>,
         foodItemImage: ArrayList<String>,
-        foodItemQuantity: ArrayList<Int>,
+        foodItemQuantity: MutableList<Int>,
         b: Boolean,
         b1: Boolean,
         address: String,
@@ -46,7 +45,7 @@ class OrderDetails():Parcelable {
         phone: String,
         time: Long,
         itemPushKey: String?
-    ) :this(){
+    ) : this(){
         this.userId = userId
         this.userName = name
         this.foodName = foodItemName
@@ -61,6 +60,7 @@ class OrderDetails():Parcelable {
         this.currentTime = time
         this.itemPushKey = itemPushKey
     }
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(userId)

@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.fooddelight.Adapters.BuyAgainAdapter
+import com.example.fooddelight.Adapters.RecentBuyAdapter
 import com.example.fooddelight.Models.OrderDetails
-import com.example.fooddelight.R
 import com.example.fooddelight.databinding.FragmentHistoryBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -46,7 +46,7 @@ class HistoryFragment : Fragment() {
     }
 
     private fun recentBuyItems() {
-        binding.recentbuycard.visibility = View.INVISIBLE
+        binding.recentrv.visibility = View.INVISIBLE
         userId = auth.currentUser?.uid ?: ""
         val databaseRef = database.reference.child("user").child(userId).child("BuyHistory")
         val sortedByTime = databaseRef.orderByChild("currentTime")
@@ -58,6 +58,7 @@ class HistoryFragment : Fragment() {
                     recentBuy?.let { listOfItems.add(it) }
 
                 }
+                listOfItems.reverse()
                 if (listOfItems.isNotEmpty()) {
                     setDataRecentBuyItem()
                     setPreviousItem()
@@ -72,8 +73,22 @@ class HistoryFragment : Fragment() {
     }
 
     private fun setDataRecentBuyItem() {
-        binding.recentbuycard.visibility = View.VISIBLE
-        val recentOrderItems = listOfItems.firstOrNull()
+        binding.recentrv.visibility = View.VISIBLE
+        val recentFoodName: MutableList<String> = mutableListOf()
+        val recentFoodPrice :MutableList<String> = mutableListOf()
+        val recentFoodImage :MutableList<String> = mutableListOf()
+        for ( i in 1 until listOfItems.size){
+            listOfItems[i].foodName?.firstOrNull()?.let { recentFoodName.add(it) }
+            listOfItems[i].foodPrice?.firstOrNull()?.let { recentFoodPrice.add(it) }
+            listOfItems[i].foodImage?.firstOrNull()?.let { recentFoodImage.add(it) }
+        }
+        val rv = binding.recentrv
+        rv.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         val recentBuyAdapter = RecentBuyAdapter(recentFoodName,recentFoodPrice,recentFoodImage,requireContext())
+        rv.adapter = recentBuyAdapter
+
+
+        /*val recentOrderItems = listOfItems.firstOrNull()
         recentOrderItems?.let {
             with(binding) {
                 recentfooditem.text = it.foodName?.firstOrNull() ?: ""
@@ -83,7 +98,7 @@ class HistoryFragment : Fragment() {
                 Glide.with(requireContext()).load(uriString).into(recentfoodimage)
 
             }
-        }
+        }*/
     }
 
     private fun setPreviousItem() {

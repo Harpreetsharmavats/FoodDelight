@@ -22,94 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="match_parent"
-        android:layout_height="95dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:elevation="3dp"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/recentbuycard"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/recentfoodimage"
-                android:layout_width="62dp"
-                android:layout_height="62dp"
-                android:layout_marginStart="16dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/menu5" />
-
-            <TextView
-                android:id="@+id/recentfooditem"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="3dp"
-                android:fontFamily="cursive"
-                android:text="Pasta"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/recentfoodimage"
-                app:layout_constraintTop_toTopOf="@+id/recentfoodimage" />
-
-            <TextView
-                android:id="@+id/recentprice"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="cursive"
-                android:text="$4"
-                android:textColor="@color/green"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/recentfooditem"
-                app:layout_constraintStart_toStartOf="@+id/recentfooditem"
-                app:layout_constraintTop_toBottomOf="@+id/recentfooditem" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/statusbtn"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="50dp"
-                android:backgroundTint="#4CAF50"
-                app:cardCornerRadius="30dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/receivedbtn"
-                style="@style/Widget.Material3.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:backgroundTint="@color/green"
-                android:fontFamily="cursive"
-                android:text="Received"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/statusbtn"
-                app:layout_constraintStart_toStartOf="@+id/statusbtn"
-                app:layout_constraintTop_toBottomOf="@+id/statusbtn" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
@@ -122,7 +34,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+        app:layout_constraintTop_toBottomOf="@+id/recentrv" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/buyagainrv"
@@ -134,5 +46,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recentrv"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

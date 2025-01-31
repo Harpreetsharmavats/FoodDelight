@@ -72,8 +72,7 @@ android:background="@color/white"
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:gravity="center_vertical"
-                android:inputType="text"
-                android:text="Ramesh Kumar" />
+                android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
@@ -109,8 +108,7 @@ android:background="@color/white"
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textMultiLine"
-                android:minHeight="60dp"
-                android:text="Lorem ipsum is placeholder text  commonly used in the graphic,  print, and publishing industries  for previewing layouts and visual " />
+                android:minHeight="60dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -143,8 +141,7 @@ android:background="@color/white"
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:gravity="center_vertical"
-                android:inputType="text"
-                android:text="8645434592" />
+                android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
@@ -206,7 +203,6 @@ android:background="@color/white"
                 android:fontFamily="cursive"
                 android:gravity="center|right|end"
                 android:paddingRight="32dp"
-                android:text="$55"
                 android:textColor="@color/green"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -220,13 +216,13 @@ android:background="@color/white"
         android:layout_width="0dp"
         android:layout_height="57dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/white"
         android:text="Place my Order"
         android:textColor="@color/green"
-        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

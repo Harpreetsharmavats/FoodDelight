@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -37,7 +38,7 @@
                 android:id="@+id/recentfooditem"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="3dp"
                 android:fontFamily="cursive"
                 android:text="Pasta"
@@ -50,16 +51,16 @@
             <TextView
                 android:id="@+id/recentprice"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
                 android:fontFamily="cursive"
                 android:text="$4"
                 android:textColor="@color/green"
-                android:textSize="19sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/recentfooditem"
-                app:layout_constraintStart_toStartOf="@+id/recentfooditem"
-                app:layout_constraintTop_toBottomOf="@+id/recentfooditem" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/recentfooditem"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/statusbtn"
@@ -87,6 +88,33 @@
                 app:layout_constraintEnd_toEndOf="@+id/statusbtn"
                 app:layout_constraintStart_toStartOf="@+id/statusbtn"
                 app:layout_constraintTop_toBottomOf="@+id/statusbtn" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="cursive"
+                android:text="Quantity"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/recentfooditem"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/recentfooditem"
+                app:layout_constraintTop_toBottomOf="@+id/recentfooditem" />
+
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="cursive"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toTopOf="@+id/textView8" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

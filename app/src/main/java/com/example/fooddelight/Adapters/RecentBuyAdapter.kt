@@ -37,7 +37,7 @@ class RecentBuyAdapter(
         fun bind(position: Int) {
             binding.recentfooditem.text = recentFoodName[position]
             binding.recentprice.text = recentFoodPrice[position]
-            val uriString = recentFoodImage.toString()
+            val uriString = recentFoodImage[position]
             val uri = Uri.parse(uriString)
             Glide.with(context).load(uri).into(binding.recentfoodimage)
         }

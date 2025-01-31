@@ -1,13 +1,11 @@
 package com.example.fooddelight.Fragments
 
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.fooddelight.Adapters.BuyAgainAdapter
 import com.example.fooddelight.Adapters.RecentBuyAdapter
 import com.example.fooddelight.Models.OrderDetails
@@ -77,7 +75,7 @@ class HistoryFragment : Fragment() {
         val recentFoodName: MutableList<String> = mutableListOf()
         val recentFoodPrice :MutableList<String> = mutableListOf()
         val recentFoodImage :MutableList<String> = mutableListOf()
-        for ( i in 1 until listOfItems.size){
+        for ( i in 0 until listOfItems.size){
             listOfItems[i].foodName?.firstOrNull()?.let { recentFoodName.add(it) }
             listOfItems[i].foodPrice?.firstOrNull()?.let { recentFoodPrice.add(it) }
             listOfItems[i].foodImage?.firstOrNull()?.let { recentFoodImage.add(it) }
@@ -105,10 +103,11 @@ class HistoryFragment : Fragment() {
         val buyAgainFoodName: MutableList<String> = mutableListOf()
         val buyAgainFoodPrice :MutableList<String> = mutableListOf()
         val buyAgainFoodImage :MutableList<String> = mutableListOf()
-        for ( i in 1 until listOfItems.size){
+        for ( i in 0 until listOfItems.size){
             listOfItems[i].foodName?.firstOrNull()?.let { buyAgainFoodName.add(it) }
-            listOfItems[i].foodPrice?.firstOrNull()?.let { buyAgainFoodPrice.add(it) }
             listOfItems[i].foodImage?.firstOrNull()?.let { buyAgainFoodImage.add(it) }
+            listOfItems[i].foodPrice?.firstOrNull()?.let { buyAgainFoodPrice.add(it) }
+
         }
         val rv = binding.buyagainrv
         rv.layoutManager = LinearLayoutManager(requireContext())

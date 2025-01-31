@@ -37,7 +37,7 @@ class BuyAgainAdapter(
         fun bind(position: Int) {
             binding.buyagainfooditems.text = buyAgainFoodName[position]
             binding.buyagainprice.text = buyAgainFoodPrice[position]
-            val uriString = buyAgainFoodImage.toString()
+            val uriString = buyAgainFoodImage[position]
             val uri = Uri.parse(uriString)
             Glide.with(requireContext).load(uri).into(binding.buyagainfoodimage)
 

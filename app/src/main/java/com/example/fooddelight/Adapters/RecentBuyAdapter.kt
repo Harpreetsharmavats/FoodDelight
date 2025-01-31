@@ -12,6 +12,7 @@ class RecentBuyAdapter(
     private var recentFoodName: MutableList<String>,
     private var recentFoodPrice: MutableList<String>,
     private var recentFoodImage: MutableList<String>,
+    private var recentFoodQuantity: MutableList<Int>,
     private var context: Context
 ) : RecyclerView.Adapter<RecentBuyAdapter.RecentViewHolder>() {
 
@@ -40,6 +41,7 @@ class RecentBuyAdapter(
             val uriString = recentFoodImage[position]
             val uri = Uri.parse(uriString)
             Glide.with(context).load(uri).into(binding.recentfoodimage)
+            binding.quantity.text = recentFoodQuantity[position].toString()
         }
 
     }

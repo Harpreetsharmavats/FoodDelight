@@ -75,14 +75,16 @@ class HistoryFragment : Fragment() {
         val recentFoodName: MutableList<String> = mutableListOf()
         val recentFoodPrice :MutableList<String> = mutableListOf()
         val recentFoodImage :MutableList<String> = mutableListOf()
+        val recentFoodQuantity :MutableList<Int> = mutableListOf()
         for ( i in 0 until listOfItems.size){
             listOfItems[i].foodName?.firstOrNull()?.let { recentFoodName.add(it) }
             listOfItems[i].foodPrice?.firstOrNull()?.let { recentFoodPrice.add(it) }
             listOfItems[i].foodImage?.firstOrNull()?.let { recentFoodImage.add(it) }
+            listOfItems[i].foodQuantity?.firstOrNull()?.let { recentFoodQuantity.add(it) }
         }
         val rv = binding.recentrv
         rv.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-         val recentBuyAdapter = RecentBuyAdapter(recentFoodName,recentFoodPrice,recentFoodImage,requireContext())
+         val recentBuyAdapter = RecentBuyAdapter(recentFoodName,recentFoodPrice,recentFoodImage,recentFoodQuantity,requireContext())
         rv.adapter = recentBuyAdapter
 
 
@@ -103,7 +105,7 @@ class HistoryFragment : Fragment() {
         val buyAgainFoodName: MutableList<String> = mutableListOf()
         val buyAgainFoodPrice :MutableList<String> = mutableListOf()
         val buyAgainFoodImage :MutableList<String> = mutableListOf()
-        for ( i in 0 until listOfItems.size){
+        for ( i in 1 until listOfItems.size){
             listOfItems[i].foodName?.firstOrNull()?.let { buyAgainFoodName.add(it) }
             listOfItems[i].foodImage?.firstOrNull()?.let { buyAgainFoodImage.add(it) }
             listOfItems[i].foodPrice?.firstOrNull()?.let { buyAgainFoodPrice.add(it) }

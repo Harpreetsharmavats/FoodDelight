@@ -31,6 +31,20 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         setUserData()
+        with(binding){
+            name.isEnabled = false
+            email.isEnabled = false
+            address.isEnabled = false
+            phone.isEnabled = false
+        }
+        binding.editbtn.setOnClickListener {
+          with(binding) {
+              name.isEnabled = !name.isEnabled
+              email.isEnabled = !email.isEnabled
+              address.isEnabled = !address.isEnabled
+              phone.isEnabled = !phone.isEnabled
+          }
+        }
         binding.savedetailsbtn.setOnClickListener {
             val name = binding.name.text.toString().trim()
             val email = binding.email.text.toString().trim()
@@ -62,31 +76,7 @@ class ProfileFragment : Fragment() {
     }
 
 
-   /* private fun setUserData() {
-        val userId = auth.currentUser?.uid
-        if (userId != null) {
-            val userRef = database.getReference("user").child(userId)
 
-            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        val userProfile = snapshot.getValue(Users::class.java)
-                        if (userProfile != null) {
-                            binding.name.setText(userProfile.Name)
-                            binding.address.setText(userProfile.Address)
-                            binding.email.setText(userProfile.Email)
-                            binding.phone.setText(userProfile.Phone)
-                        }
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-            })
-        }
-    }*/
    private fun setUserData() {
        val user = auth.currentUser
        if (user != null){

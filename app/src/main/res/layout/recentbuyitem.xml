@@ -52,13 +52,14 @@
                 android:id="@+id/recentprice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
                 android:fontFamily="cursive"
                 android:text="$4"
                 android:textColor="@color/green"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/receivedbtn"
+                app:layout_constraintHorizontal_bias="0.8"
                 app:layout_constraintStart_toEndOf="@+id/recentfooditem"
                 app:layout_constraintTop_toTopOf="parent" />
 

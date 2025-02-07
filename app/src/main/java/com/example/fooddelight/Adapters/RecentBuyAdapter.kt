@@ -19,10 +19,12 @@ class RecentBuyAdapter(
     private var paymentReceived: Boolean,
     private var context: Context,
 
-    private val itemClicked : OnItemClicked
+    private val itemClicked : OnItemClicked,
+    private val itemViewClicked : OnItemClicked
 ) : RecyclerView.Adapter<RecentBuyAdapter.RecentViewHolder>() {
 interface OnItemClicked{
     fun onItemClickListener(position: Int)
+    fun onItemViewClickListener(position: Int)
 }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentViewHolder {
@@ -62,6 +64,9 @@ interface OnItemClicked{
             }
             if (paymentReceived){
                 binding.receivedbtn.visibility = View.INVISIBLE
+            }
+            itemView.setOnClickListener{
+                itemViewClicked.onItemViewClickListener(position)
             }
 
         }

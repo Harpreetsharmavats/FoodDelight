@@ -180,6 +180,7 @@
         android:layout_height="57dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/white"
         android:text="Save Details"
         android:textColor="@color/green"

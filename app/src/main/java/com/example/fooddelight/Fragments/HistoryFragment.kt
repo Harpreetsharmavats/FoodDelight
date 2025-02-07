@@ -1,5 +1,6 @@
 package com.example.fooddelight.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddelight.Adapters.BuyAgainAdapter
 import com.example.fooddelight.Adapters.RecentBuyAdapter
 import com.example.fooddelight.Models.OrderDetails
+import com.example.fooddelight.RecentOrderDetailsActivity
 import com.example.fooddelight.databinding.FragmentHistoryBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -39,9 +41,14 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
 
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
         recentBuyItems()
+
         //setupRecyclerView()
         return binding.root
     }
+
+
+
+
 
     private fun recentBuyItems() {
         binding.recentrv.visibility = View.INVISIBLE
@@ -60,6 +67,7 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
                 if (listOfItems.isNotEmpty()) {
                     setDataRecentBuyItem()
                     setPreviousItem()
+
                 }
             }
 
@@ -96,7 +104,7 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
             paymentReceived,
             requireContext(),
             this,
-
+            this
         )
         rv.adapter = recentBuyAdapter
 
@@ -137,6 +145,15 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
 
     override fun onItemClickListener(position: Int) {
         updateOrderStatus()
+    }
+
+    override fun onItemViewClickListener(position: Int) {
+        val userOrderDetails = listOfItems[position]
+        val intent = Intent(requireContext(),RecentOrderDetailsActivity::class.java)
+
+        intent.putExtra("ListOfItems",userOrderDetails)
+        startActivity(intent)
+        //startActivity(Intent(requireContext(),RecentOrderDetailsActivity::class.java))
     }
 
     private fun updateOrderStatus() {

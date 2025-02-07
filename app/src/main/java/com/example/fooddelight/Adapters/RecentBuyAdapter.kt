@@ -1,8 +1,10 @@
 package com.example.fooddelight.Adapters
 
 import android.content.Context
+import android.graphics.Color
 import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -13,9 +15,14 @@ class RecentBuyAdapter(
     private var recentFoodPrice: MutableList<String>,
     private var recentFoodImage: MutableList<String>,
     private var recentFoodQuantity: MutableList<Int>,
-    private var context: Context
-) : RecyclerView.Adapter<RecentBuyAdapter.RecentViewHolder>() {
+    private var isOrderAccepted: Boolean,
+    private var context: Context,
 
+    private val itemClicked : OnItemClicked
+) : RecyclerView.Adapter<RecentBuyAdapter.RecentViewHolder>() {
+interface OnItemClicked{
+    fun onItemClickListener(position: Int)
+}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentViewHolder {
         return RecentViewHolder(
@@ -42,6 +49,17 @@ class RecentBuyAdapter(
             val uri = Uri.parse(uriString)
             Glide.with(context).load(uri).into(binding.recentfoodimage)
             binding.quantity.text = recentFoodQuantity[position].toString()
+            binding.receivedbtn.setOnClickListener {
+                itemClicked.onItemClickListener(position)
+            }
+            if (isOrderAccepted){
+                binding.statusbtn.background.setTint(Color.GREEN)
+                binding.receivedbtn.visibility = View.VISIBLE
+            }else{
+                binding.statusbtn.background.setTint(Color.GRAY)
+
+            }
+
         }
 
     }

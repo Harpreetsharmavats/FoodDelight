@@ -83,6 +83,7 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
             listOfItems[i].foodQuantity?.firstOrNull()?.let { recentFoodQuantity.add(it) }
         }
         val isOrderAccepted = listOfItems[0].orderAccepted
+        val paymentReceived = listOfItems[0].paymentReceived
         val rv = binding.recentrv
         rv.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -92,6 +93,7 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
             recentFoodImage,
             recentFoodQuantity,
             isOrderAccepted,
+            paymentReceived,
             requireContext(),
             this,
 

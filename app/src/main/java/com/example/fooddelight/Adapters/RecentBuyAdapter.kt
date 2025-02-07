@@ -16,6 +16,7 @@ class RecentBuyAdapter(
     private var recentFoodImage: MutableList<String>,
     private var recentFoodQuantity: MutableList<Int>,
     private var isOrderAccepted: Boolean,
+    private var paymentReceived: Boolean,
     private var context: Context,
 
     private val itemClicked : OnItemClicked
@@ -58,6 +59,9 @@ interface OnItemClicked{
             }else{
                 binding.statusbtn.background.setTint(Color.GRAY)
 
+            }
+            if (paymentReceived){
+                binding.receivedbtn.visibility = View.INVISIBLE
             }
 
         }

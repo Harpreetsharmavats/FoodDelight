@@ -26,6 +26,7 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
     private lateinit var database: FirebaseDatabase
     private lateinit var userId: String
     private val listOfItems: MutableList<OrderDetails> = mutableListOf()
+    private val listOfPreviousItems: MutableList<OrderDetails> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,8 +42,8 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
 
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
         recentBuyItems()
+        previousBuyItems()
 
-        //setupRecyclerView()
         return binding.root
     }
 
@@ -58,14 +59,44 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
 
         sortedByTime.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+
                 for (foodSnapshot in snapshot.children) {
                     val recentBuy = foodSnapshot.getValue(OrderDetails::class.java)
+
                     recentBuy?.let { listOfItems.add(it) }
 
                 }
                 listOfItems.reverse()
                 if (listOfItems.isNotEmpty()) {
                     setDataRecentBuyItem()
+
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+    }
+
+    private fun previousBuyItems() {
+        userId = auth.currentUser?.uid ?: ""
+        val databaseRef = database.reference.child("user").child(userId).child("CompletedOrder")
+        val sortedByTime = databaseRef.orderByChild("currentTime")
+
+        sortedByTime.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (foodSnapshot in snapshot.children) {
+                    val recentBuy = foodSnapshot.getValue(OrderDetails::class.java)
+
+                    recentBuy?.let { listOfPreviousItems.add(it) }
+
+                }
+                listOfPreviousItems.reverse()
+                if (listOfPreviousItems.isNotEmpty()) {
+
                     setPreviousItem()
 
                 }
@@ -81,15 +112,17 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
     private fun setDataRecentBuyItem() {
         binding.recentrv.visibility = View.VISIBLE
         val recentFoodName: MutableList<String> = mutableListOf()
-        val recentFoodPrice: MutableList<String> = mutableListOf()
         val recentFoodImage: MutableList<String> = mutableListOf()
         val recentFoodQuantity: MutableList<Int> = mutableListOf()
+        val total :ArrayList<String> = arrayListOf()
+
         for (i in 0 until listOfItems.size) {
             listOfItems[i].foodName?.firstOrNull()?.let { recentFoodName.add(it) }
-            listOfItems[i].foodPrice?.firstOrNull()?.let { recentFoodPrice.add(it) }
             listOfItems[i].foodImage?.firstOrNull()?.let { recentFoodImage.add(it) }
             listOfItems[i].foodQuantity?.firstOrNull()?.let { recentFoodQuantity.add(it) }
+            listOfItems[i].totalPrice.let { total.add(it!!) }
         }
+
         val isOrderAccepted = listOfItems[0].orderAccepted
         val paymentReceived = listOfItems[0].paymentReceived
         val rv = binding.recentrv
@@ -97,7 +130,7 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val recentBuyAdapter = RecentBuyAdapter(
             recentFoodName,
-            recentFoodPrice,
+            total,
             recentFoodImage,
             recentFoodQuantity,
             isOrderAccepted,
@@ -126,10 +159,10 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
         val buyAgainFoodName: MutableList<String> = mutableListOf()
         val buyAgainFoodPrice: MutableList<String> = mutableListOf()
         val buyAgainFoodImage: MutableList<String> = mutableListOf()
-        for (i in 0 until listOfItems.size) {
-            listOfItems[i].foodName?.firstOrNull()?.let { buyAgainFoodName.add(it) }
-            listOfItems[i].foodImage?.firstOrNull()?.let { buyAgainFoodImage.add(it) }
-            listOfItems[i].foodPrice?.firstOrNull()?.let { buyAgainFoodPrice.add(it) }
+        for (i in 0 until listOfPreviousItems.size) {
+            listOfPreviousItems[i].foodName?.firstOrNull()?.let { buyAgainFoodName.add(it) }
+            listOfPreviousItems[i].foodImage?.firstOrNull()?.let { buyAgainFoodImage.add(it) }
+            listOfPreviousItems[i].foodPrice?.firstOrNull()?.let { buyAgainFoodPrice.add(it) }
 
         }
         val rv = binding.buyagainrv
@@ -153,7 +186,7 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
 
         intent.putExtra("ListOfItems",userOrderDetails)
         startActivity(intent)
-        //startActivity(Intent(requireContext(),RecentOrderDetailsActivity::class.java))
+
     }
 
     private fun updateOrderStatus() {

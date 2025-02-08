@@ -178,6 +178,12 @@ class HistoryFragment : Fragment(), RecentBuyAdapter.OnItemClicked {
 
     override fun onItemClickListener(position: Int) {
         updateOrderStatus()
+        deleteBuyHistory()
+    }
+
+    private fun deleteBuyHistory() {
+        val buyHistoryRef = database.reference.child("user").child(userId).child("BuyHistory")
+        buyHistoryRef.removeValue()
     }
 
     override fun onItemViewClickListener(position: Int) {

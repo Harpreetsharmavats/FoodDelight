@@ -34,7 +34,8 @@ A modern and user-friendly **Food Delivery App** built using **Kotlin and Fireba
 1. **Clone the Repository**
 
 ```sh
- git clone https://github.com/harpreetsharmavats/FoodDelight.git
+https://github.com/Harpreetsharmavats/FoodDelight/tree/master
+
 ```
 
 2. **Open in Android Studio**

@@ -55,6 +55,7 @@ interface OnItemClicked{
             binding.receivedbtn.setOnClickListener {
                 itemClicked.onItemClickListener(position)
             }
+
             if (isOrderAccepted){
                 binding.statusbtn.background.setTint(Color.GREEN)
                 binding.receivedbtn.visibility = View.VISIBLE
@@ -63,7 +64,8 @@ interface OnItemClicked{
 
             }
             if (paymentReceived){
-                binding.receivedbtn.visibility = View.INVISIBLE
+                binding.receivedbtn.visibility = View.GONE
+
             }
             itemView.setOnClickListener{
                 itemViewClicked.onItemViewClickListener(position)

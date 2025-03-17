@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "924276009483-335jd7hmee69lmdufpbtpf7vk1p6dtq1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fooddelight",
+            "certificate_hash": "333f4088759b79868406ee556e324c6d12ec470b"
+          }
+        },
+        {
           "client_id": "924276009483-0f3cuqqalf5kohac8s115jvo44gkg701.apps.googleusercontent.com",
           "client_type": 3
         }

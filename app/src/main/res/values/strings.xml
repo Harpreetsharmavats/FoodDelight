@@ -6,6 +6,7 @@
     <string name="facebook_app_id">2039177089894741</string>
     <string name="fb_login_protocol_scheme">fb2039177089894741</string>
     <string name="facebook_client_token">69da23f5c85a7ab29c5df7e5a89733cb</string>
+    <string name="default_web_client_id" >924276009483-3pg3q12okm6mbf7hb05skesa7s9pjq0t.apps.googleusercontent.com</string>
 
 
 </resources>
